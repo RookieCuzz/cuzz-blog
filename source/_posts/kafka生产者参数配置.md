@@ -9,7 +9,7 @@ tags:
 ## ACK= 1/0/-1 
 
 
-![图](./images/1.png)
+![图](/images/1.png)
 
 当acks=0 → 不等任何确认。  (对性能要求高，数据丢失可接受)
 
@@ -23,7 +23,7 @@ tags:
 当发送失败时，允许重试的次数。与 request.timeout.ms 联动使用.   
 ## Delivery timeout ms= 2min
 定义整个发送流程（包括多次重试）的最大等待时间。一旦超时，生产者放弃该消息并返回异常。  
-![图](./images/2.png)
+![图](/images/2.png)
 
  
 ## Idempotent= true/false 幂等性 (max.in.flight.requests.per.connection=1)
@@ -32,4 +32,4 @@ Kafka 幂等性通过为每个生产者分配一个唯一的 PID，以及为每�
 当消息送达后，Broker 会检查序列号是否正好是上一次 +1 的值：   
     如果是，则正常写入并更新高水位。    
     如果不是，则认为是重复或乱序，直接丢弃
-![图](./images/3.png)
+![图](/images/3.png)
