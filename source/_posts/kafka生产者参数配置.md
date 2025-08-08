@@ -38,3 +38,8 @@ Kafka 幂等性通过为每个生产者分配一个唯一的 PID，以及为每�
     如果不是，则认为是重复或乱序，直接丢弃
 <img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/3.png?raw=true" alt="图" width="1200" />
 
+
+## 参数配置总结
+
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/7.png?raw=true" alt="图" width="1200" />
+
