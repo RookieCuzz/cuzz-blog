@@ -1,41 +1,41 @@
-name: GitHub Pages Hexo Deploy
+name: Deploy Hexo to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # 监听 main 分支的提交
+      - main
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
-      pages: write         # 允许部署 GitHub Pages
-      id-token: write      # 允许请求 OIDC 令牌，actions/deploy-pages 需要
+      pages: write
+      id-token: write
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Cache node modules
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-
       - name: Install dependencies
         run: npm install
 
       - name: Generate static files
-        run: npm run build # 你的 package.json 中需要有 "build": "hexo generate" 的脚本
+        run: npm run build
 
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
