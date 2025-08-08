@@ -9,7 +9,7 @@ tags:
 ## ACK= 1/0/-1 
 
 
-![图](/images/1.png)
+![图](https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/1.png?raw=true)
 
 当acks=0 → 不等任何确认。  (对性能要求高，数据丢失可接受)
 
@@ -23,13 +23,18 @@ tags:
 当发送失败时，允许重试的次数。与 request.timeout.ms 联动使用.   
 ## Delivery timeout ms= 2min
 定义整个发送流程（包括多次重试）的最大等待时间。一旦超时，生产者放弃该消息并返回异常。  
-![图](/images/2.png)
+![图](https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/2.png?raw=true)
 
  
-## Idempotent= true/false 幂等性 (max.in.flight.requests.per.connection=1)
+## max.in.flight.requests.per.connection=n
+producer发送消息是异步的,并不会等待ack再开始发送下一条消息.             
+也就是说ack只能保证消息到达broker端,当Retries>1时,发送失败的消息会进行重试,原本的顺序性被打破.
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/3-1.png?raw=true" alt="图" width="1200" />
+## Idempotent= true/false 幂等性 (max.in.flight.requests.per.connection=1 旧版本kafka)
 Producer ID (PID) + Sequence Number    
 Kafka 幂等性通过为每个生产者分配一个唯一的 PID，以及为每条消息维护单调递增的序列号来实现。在 Broker 端，会记录每个 (PID, 分区) 的最后写入序列号，从而判断重复或乱序消息    
 当消息送达后，Broker 会检查序列号是否正好是上一次 +1 的值：   
     如果是，则正常写入并更新高水位。    
     如果不是，则认为是重复或乱序，直接丢弃
-![图](/images/3.png)
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/3.png?raw=true" alt="图" width="1200" />
+
