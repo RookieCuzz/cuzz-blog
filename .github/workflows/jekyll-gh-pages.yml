@@ -6,13 +6,15 @@ on:
       - main
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,19 +25,15 @@ jobs:
         run: npm install
 
       - name: Generate static files
-        run: npm run build
+        run: npm run build  # 确保 package.json 中有 `"build": "hexo generate"`
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./public  # Hexo 默认生成目录
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
