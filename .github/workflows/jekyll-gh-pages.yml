@@ -8,7 +8,9 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-
+    permissions:
+      pages: write         # 允许部署 GitHub Pages
+      id-token: write      # 允许请求 OIDC 令牌，actions/deploy-pages 需要
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
