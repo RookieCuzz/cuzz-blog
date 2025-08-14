@@ -50,7 +50,7 @@ cloudflare会提供一个域,后续我们可以通过这个域访问博客
 如果觉得默认的主题不好看,可以切换到其他主题.   
 [主题网站](https://hexo.io/themes/)
 
-切换博客项目根目录,进入themes目录下载想要切换主题的源码.   
-打开
-
+切换博客项目根目录,进入themes目录下载想要切换主题的源码(记得解压).     
+然后打开根目录修改为你之前下载的主题名称(!!!)
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/13.png?raw=true" alt="图" width="1200" />
 
