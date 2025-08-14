@@ -5,6 +5,11 @@ tags:
 ---
 # Fiber
 
+开局先丢个性能比较图
+
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/14.png?raw=true" alt="看不到图的话,代表你需要科学上网" width="1200" />
+
+
 
 
 ## Fiber框架快速入门
