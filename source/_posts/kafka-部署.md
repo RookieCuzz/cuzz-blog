@@ -87,3 +87,7 @@ networks:
 资源分配：确保宿主机和虚拟机有足够的资源（如内存和 CPU）来运行 Kafka 和 ZooKeeper。
 
 日志监控：定期检查 Kafka 和 ZooKeeper 的日志，以便及时发现并解决问题。
+
+# 5.效果(采集玩家聊天记录)
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/16.png?raw=true" alt="图" width="1200" />
+
