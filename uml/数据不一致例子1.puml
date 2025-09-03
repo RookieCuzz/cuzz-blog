@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+participant 线程1 as Thread1
+
+database 数据库 as Db
+Queue 缓存 as Cache
+participant 线程2 as Thread2
+
+Thread1 -> Cache : 删除旧缓存数据
+Thread2 -> Cache : 查找缓存数据\n(因为刚被线程1删了所以找不到)
+Thread2 -> Db : 到数据库查找数据
+Thread2 -> Cache : 缓存查找到的数据
+Thread1 -> Db : 更新旧数据
+
+
+
+@enduml

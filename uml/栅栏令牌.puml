@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+participant 线程1 as Thread1
+
+database 数据库秒杀商品库存字段 as Db
+Queue 分布式锁 as Lock
+participant 线程2 as Thread2
+
+Thread1 -> Lock :获取锁
+Thread1 ->Db:查询库存数量 100
+Thread1 -->Lock: 因 GC 暂停或网络延迟导致的滞后写(锁过期但是还没更新数据库)
+Thread2 ->Lock :获取锁
+Thread2 ->Db:查询库存数量 100
+Thread1 -> Db : 更新库存  99
+Thread2 -> Db : 更新库存  99
+@enduml

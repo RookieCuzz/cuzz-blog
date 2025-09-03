@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+participant 线程1 as Thread1
+
+database 数据库 as Db
+Queue 缓存 as Cache
+participant 线程2 as Thread2
+
+Thread1 -> Db : 更新数据库
+Thread1 -> Cache : 宕机导致删除缓存失败
+Thread2 -> Cache : 查找缓存数据\n(因为线程1没删旧缓存导致得到的是旧数据)
+
+
+
+@enduml
