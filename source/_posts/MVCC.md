@@ -4,6 +4,9 @@ date: 2025-09-29 15:35:50
 tags:
 ---
 <img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/32.png?raw=true" alt="图" width="1200" />
+
+
+
 # Mysql MVCC机制
 **MVCC通过Read View机制解决脏读问题的四步判断流程如下：**  
 MySQL 官方文档在 “Consistent Nonlocking Reads” 一节中明确写道：   
