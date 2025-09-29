@@ -3,8 +3,7 @@ title: MVCC这一块
 date: 2025-09-29 15:35:50
 tags:
 ---
-![img.png](img.png)
-
+<img src="https://github.com/RookieCuzz/cuzz-blog/blob/main/source/_posts/images/32.png?raw=true" alt="图" width="1200" />
 # Mysql MVCC机制
 **MVCC通过Read View机制解决脏读问题的四步判断流程如下：**  
 MySQL 官方文档在 “Consistent Nonlocking Reads” 一节中明确写道：   
@@ -53,3 +52,4 @@ RC 每次快照读都会创建新的 Read View，因此别的事务“刚提交�
 **不会改变已生成的 Read View 判断结果。Read View 是快照；创建后它的 m_ids / min_trx_id / max_trx_id 不再变化**
 
 在 RR 下：你事务内后续快照读仍用同一个 Read View，所以对那条“当时还未提交”的版本仍然视为不可见（你继续回溯到更老的可见版本
+在 RC 下：下一条快照读会生成新的 Read View，刚提交的事务将从 m_ids 中消失，于是其版本可能变为可见。
