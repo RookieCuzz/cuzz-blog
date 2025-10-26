@@ -34,9 +34,9 @@ ZipList和SkipList。同时满足一下条件时使用zipList编码(紧挨在一
 
 
 ## 两套结构各司其职
-字典（dict/hash table）：保存 member → score 的映射，用于 O(1) 的按成员查分/判存在（ZSCORE、ZMSCORE、更新时先查旧分）。
-跳表（zskiplist）：按 score（同分再按成员字典序）维护全局有序，支持按分数/排名的区间定位与顺扫，是 ZRANGE ... BYSCORE/INDEX/LEX、ZRANK 等的底层载体。
-官方文档明确：Zset 采用跳表 + 哈希表的双端口结构，因此添加元素是 O(log N)，而读取有序结果无需再排序。(类似二分查找)
+字典（dict/hash table）：保存 member → score 的映射，用于 O(1) 的按成员查分/判存在（ZSCORE、ZMSCORE、更新时先查旧分）。                           
+跳表（zskiplist）：按 score（同分再按成员字典序）维护全局有序，支持按分数/排名的区间定位与顺扫，是 ZRANGE ... BYSCORE/INDEX/LEX、ZRANK 等的底层载体。               
+官方文档明确：Zset 采用跳表 + 哈希表的双端口结构，因此添加元素是 O(log N)，而读取有序结果无需再排序。(类似二分查找)                         
 
 
 ##  典型操作如何落到两套结构
